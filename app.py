@@ -2,6 +2,7 @@ from datetime import datetime
 from pathlib import Path
 import io
 import os
+import re
 
 import altair as alt
 import joblib
@@ -135,6 +136,8 @@ if "export_format" not in st.session_state:
     st.session_state["export_format"] = "CSV (;) - Power BI"
 if "last_action" not in st.session_state:
     st.session_state["last_action"] = None
+if "column_map" not in st.session_state:
+    st.session_state["column_map"] = {}
 
 
 ensure_storage()
@@ -159,8 +162,41 @@ else:
         )
         st.session_state["audit_flags"]["file_signature"] = file_sig
 
+    def clean_col_name(col: str) -> str:
+        return re.sub(r"[^a-z0-9]", "", str(col).lower())
+
+    proposals = {}
+    cleaned_cols = {c: clean_col_name(c) for c in df.columns}
+    for target in REQUIRED:
+        target_clean = clean_col_name(target)
+        match = next((c for c, cc in cleaned_cols.items() if cc == target_clean), None)
+        if not match:
+            match = next((c for c, cc in cleaned_cols.items() if target_clean in cc), None)
+        proposals[target] = match
+
+    st.markdown("#### Correspondance des colonnes (adapter aux en-têtes de votre fichier)")
+    column_map = {}
+    for target in REQUIRED:
+        options = ["(aucune)"] + list(df.columns)
+        default = st.session_state["column_map"].get(target) or proposals.get(target) or "(aucune)"
+        try:
+            default_index = options.index(default)
+        except ValueError:
+            default_index = 0
+        column_map[target] = st.selectbox(
+            f"Colonne pour {target}",
+            options,
+            index=default_index,
+            key=f"map_{target}",
+            help="Choisissez la colonne de votre fichier qui correspond à ce champ attendu.",
+        )
+    st.session_state["column_map"] = column_map
+
     df = df.reset_index(drop=True)
     df["RowID"] = df.index.astype(int)
+    for target, source in column_map.items():
+        if source != "(aucune)" and source in df.columns:
+            df[target] = df[source]
 
     with st.spinner("Génération des contrôles et features..."):
         feat, missing_cols = build_features(df, FATF_DEFAULT, allow_missing=True)
@@ -175,6 +211,7 @@ else:
                 "file": source_name,
                 "used_columns": list(REQUIRED),
                 "missing_columns": missing_cols,
+                "column_map": column_map,
                 "derived_columns": [c for c in feat.columns if c not in df.columns and c not in missing_cols],
                 "rules": [r["id"] for r in applicable_rules],
                 "model_features": list(FEATURES),
@@ -359,15 +396,13 @@ else:
     if view in ("Tout", "3 Entrainement"):
         with st.expander("3. Entrainement du modele", expanded=True):
             st.markdown('<div class="section-title">3. Entrainement du modele</div>', unsafe_allow_html=True)
-            status_cols = st.columns([0.2, 0.8])
             last_train = next((e for e in reversed(read_run_log()) if e.get("type") == "train"), None)
             if last_train:
-                status_cols[0].markdown('<div style="width:16px;height:16px;border-radius:8px;background:#16a34a;"></div>', unsafe_allow_html=True)
-                status_cols[1].caption(
+                st.caption(
                     f"Modèle entraîné à {last_train.get('timestamp','')} sur {last_train.get('rows','?')} lignes (1={last_train.get('labels_1','?')}, 0={last_train.get('labels_0','?')}), AUC={last_train.get('auc','?')}"
                 )
             else:
-                status_cols[1].caption("Modèle non entraîné ou journal absent.")
+                st.caption("Modèle non entraîné ou journal absent.")
             if st.button("Entrainer le modele (avec labels sauvegardes)"):
                 labels2 = load_labels()
                 if labels2.empty:
@@ -467,10 +502,6 @@ else:
                             st.info(
                                 f"Ce qui vient de se passer : modèle entraîné sur {train_df.shape[0]} lignes (1={pos}, 0={neg}), AUC={auc:.3f}. "
                                 "Fichier modèle : storage/model.joblib"
-                            )
-                            status_cols[0].markdown('<div style="width:16px;height:16px;border-radius:8px;background:#16a34a;"></div>', unsafe_allow_html=True)
-                            status_cols[1].caption(
-                                f"Modèle entraîné à {datetime.utcnow().isoformat()} sur {train_df.shape[0]} lignes (1={pos}, 0={neg}), AUC={auc:.3f}"
                             )
         st.markdown('<div class="section-gap-lg"></div>', unsafe_allow_html=True)
 
