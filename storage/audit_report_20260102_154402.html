@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Rapport de traitement</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f7f7fa; color: #0f172a; }
+    h1 { font-size: 24px; }
+    h2 { margin-top: 28px; }
+    .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-top: 12px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #e2e8f0; padding: 8px; font-size: 12px; vertical-align: top; }
+    th { background: #e0e7ff; text-align: left; }
+    pre { white-space: pre-wrap; word-break: break-word; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <h1>Rapport de traitement et de controle</h1>
+  <div class="card">
+    <p><strong>Genere le :</strong> 2026-01-02T15:44:02.274242 (UTC)</p>
+    <p><strong>Source :</strong> rf_test_5000.xlsx</p>
+    <p><strong>Colonnes exploitees :</strong> AdressePays, Ctrl_DateApresNov, Ctrl_DoublonRF, Ctrl_Etranger, Ctrl_IdentiteVide, Ctrl_Montant500, Ctrl_MontantNegatif, Ctrl_MontantNul, Ctrl_PaysGAFI, Ctrl_RuptureSeq, DateDon, EstFinAnnee, JourSemaine, Mois, Montant, MontantRF, Nb_Doublons_NumRF, NomDonateur, NumRF, NumRF_numeric, RiskRule, Taille_RuptureSeq</p>
+    <p><strong>Fichiers sources :</strong> rf_test_5000.xlsx, rf_test_5000.xlsx, rf_test_5000.xlsx, rf_test_5000.xlsx, template_RF_input.xlsx, template_RF_input.xlsx, rf_test_5000.xlsx, rf_test_5000.xlsx</p>
+    <p><strong>Exports produits :</strong> Aucun</p>
+  </div>
+
+  <h2>Journal des actions (9)</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Horodatage</th><th>Etape</th><th>Details</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2026-01-02T15:22:17.490452</td><td>fichier_lu</td><td><pre>{
+  "file": "rf_test_5000.xlsx",
+  "rows": 5000,
+  "columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:22:17.596757</td><td>features_calculees</td><td><pre>{
+  "file": "rf_test_5000.xlsx",
+  "used_columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ],
+  "derived_columns": [
+    "NumRF_numeric",
+    "Nb_Doublons_NumRF",
+    "Ctrl_DoublonRF",
+    "Taille_RuptureSeq",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee",
+    "RiskRule"
+  ],
+  "rules": [
+    "Ctrl_DoublonRF",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "RiskRule"
+  ],
+  "model_features": [
+    "Ctrl_RuptureSeq",
+    "Ctrl_DoublonRF",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_IdentiteVide",
+    "Ctrl_MontantNul",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Taille_RuptureSeq",
+    "Nb_Doublons_NumRF",
+    "Montant",
+    "MontantRF",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee"
+  ],
+  "fatf_countries": [
+    "Afrique du Sud",
+    "Coree du Nord",
+    "Iran",
+    "Myanmar",
+    "Syrie",
+    "Yemen"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:26:47.104842</td><td>fichier_lu</td><td><pre>{
+  "file": "rf_test_5000.xlsx",
+  "rows": 5000,
+  "columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:26:47.134843</td><td>features_calculees</td><td><pre>{
+  "file": "rf_test_5000.xlsx",
+  "used_columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ],
+  "derived_columns": [
+    "NumRF_numeric",
+    "Nb_Doublons_NumRF",
+    "Ctrl_DoublonRF",
+    "Taille_RuptureSeq",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee",
+    "RiskRule"
+  ],
+  "rules": [
+    "Ctrl_DoublonRF",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "RiskRule"
+  ],
+  "model_features": [
+    "Ctrl_RuptureSeq",
+    "Ctrl_DoublonRF",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_IdentiteVide",
+    "Ctrl_MontantNul",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Taille_RuptureSeq",
+    "Nb_Doublons_NumRF",
+    "Montant",
+    "MontantRF",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee"
+  ],
+  "fatf_countries": [
+    "Afrique du Sud",
+    "Coree du Nord",
+    "Iran",
+    "Myanmar",
+    "Syrie",
+    "Yemen"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:27:21.517866</td><td>fichier_lu</td><td><pre>{
+  "file": "template_RF_input.xlsx",
+  "rows": 0,
+  "columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:27:21.537378</td><td>features_calculees</td><td><pre>{
+  "file": "template_RF_input.xlsx",
+  "used_columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ],
+  "derived_columns": [
+    "NumRF_numeric",
+    "Nb_Doublons_NumRF",
+    "Ctrl_DoublonRF",
+    "Taille_RuptureSeq",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee",
+    "RiskRule"
+  ],
+  "rules": [
+    "Ctrl_DoublonRF",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "RiskRule"
+  ],
+  "model_features": [
+    "Ctrl_RuptureSeq",
+    "Ctrl_DoublonRF",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_IdentiteVide",
+    "Ctrl_MontantNul",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Taille_RuptureSeq",
+    "Nb_Doublons_NumRF",
+    "Montant",
+    "MontantRF",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee"
+  ],
+  "fatf_countries": [
+    "Afrique du Sud",
+    "Coree du Nord",
+    "Iran",
+    "Myanmar",
+    "Syrie",
+    "Yemen"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:27:26.083993</td><td>fichier_lu</td><td><pre>{
+  "file": "rf_test_5000.xlsx",
+  "rows": 5000,
+  "columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:27:26.115991</td><td>features_calculees</td><td><pre>{
+  "file": "rf_test_5000.xlsx",
+  "used_columns": [
+    "NumRF",
+    "Montant",
+    "MontantRF",
+    "DateDon",
+    "AdressePays",
+    "NomDonateur"
+  ],
+  "derived_columns": [
+    "NumRF_numeric",
+    "Nb_Doublons_NumRF",
+    "Ctrl_DoublonRF",
+    "Taille_RuptureSeq",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee",
+    "RiskRule"
+  ],
+  "rules": [
+    "Ctrl_DoublonRF",
+    "Ctrl_RuptureSeq",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_MontantNul",
+    "Ctrl_IdentiteVide",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "RiskRule"
+  ],
+  "model_features": [
+    "Ctrl_RuptureSeq",
+    "Ctrl_DoublonRF",
+    "Ctrl_PaysGAFI",
+    "Ctrl_MontantNegatif",
+    "Ctrl_IdentiteVide",
+    "Ctrl_MontantNul",
+    "Ctrl_Montant500",
+    "Ctrl_DateApresNov",
+    "Ctrl_Etranger",
+    "Taille_RuptureSeq",
+    "Nb_Doublons_NumRF",
+    "Montant",
+    "MontantRF",
+    "Mois",
+    "JourSemaine",
+    "EstFinAnnee"
+  ],
+  "fatf_countries": [
+    "Afrique du Sud",
+    "Coree du Nord",
+    "Iran",
+    "Myanmar",
+    "Syrie",
+    "Yemen"
+  ]
+}</pre></td></tr>
+<tr><td>2026-01-02T15:41:29.821871</td><td>entrainement_modele</td><td><pre>{
+  "rows": 200,
+  "labels_1": 17,
+  "labels_0": 183,
+  "auc": 0.43243243243243235,
+  "rf_params": {
+    "n_estimators": 500,
+    "min_samples_leaf": 5,
+    "class_weight": "balanced",
+    "max_depth": 12,
+    "max_features": "sqrt",
+    "random_state": 42,
+    "n_jobs": -1
+  }
+}</pre></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Regles et controles appliques</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Ctrl_DoublonRF</strong> - Doublons sur NumRF: NumRF apparait plus d une fois dans le fichier.</li>
+<li><strong>Ctrl_RuptureSeq</strong> - Rupture de sequence: Ecart de sequence (>1) detecte en triant NumRF.</li>
+<li><strong>Ctrl_PaysGAFI</strong> - Pays sensible FATF: AdressePays present dans la liste FATF simplifiee.</li>
+<li><strong>Ctrl_MontantNegatif</strong> - Montant negatif: MontantRF strictement negatif.</li>
+<li><strong>Ctrl_MontantNul</strong> - Montant nul: Montant indique a 0.</li>
+<li><strong>Ctrl_IdentiteVide</strong> - Identite manquante: NomDonateur vide ou uniquement des espaces.</li>
+<li><strong>Ctrl_Montant500</strong> - Montant eleve: Montant superieur ou egal a 500.</li>
+<li><strong>Ctrl_DateApresNov</strong> - Date apres novembre: DateDon situee apres le mois de novembre (mois >= 11).</li>
+<li><strong>Ctrl_Etranger</strong> - Adresse etrangere: AdressePays differente de France.</li>
+<li><strong>RiskRule</strong> - Heuristique de priorisation: Active si un controle eliminatoire est vrai ou si deux controles cumulatifs sont vrais.</li>
+    </ul>
+  </div>
+</body>
+</html>

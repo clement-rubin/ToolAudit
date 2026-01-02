@@ -186,5 +186,563 @@
     },
     "auc": null,
     "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:04:07.019644",
+    "rows": 200,
+    "labels_1": 15,
+    "labels_0": 185,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.7207207207207207,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:05:56.943597",
+    "rows": 200,
+    "labels_1": 15,
+    "labels_0": 185,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.7207207207207207,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T14:06:00.380925",
+    "rows": 5000,
+    "labels_1": 15,
+    "labels_0": 185,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:15:00.317219",
+    "rows": 200,
+    "labels_1": 15,
+    "labels_0": 185,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.7207207207207207,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T14:15:06.532930",
+    "rows": 5000,
+    "labels_1": 15,
+    "labels_0": 185,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:18:15.742542",
+    "rows": 200,
+    "labels_1": 15,
+    "labels_0": 185,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.7207207207207207,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:18:23.202247",
+    "rows": 200,
+    "labels_1": 15,
+    "labels_0": 185,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.7207207207207207,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:20:27.369876",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T14:20:36.525999",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:22:23.587248",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T14:22:26.560947",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T14:25:02.989603",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:29:46.610927",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:29:56.802613",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T14:30:00.727615",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.8
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T14:33:34.224981",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T15:41:29.799631",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T15:46:14.795318",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T15:46:21.941235",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T15:46:55.352222",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T15:48:25.992511",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T15:52:10.000411",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T15:55:05.442682",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T15:55:08.700784",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T15:57:50.844426",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T15:57:55.365353",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T16:00:13.338676",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T16:00:23.329471",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "score",
+    "timestamp": "2026-01-02T16:03:00.506759",
+    "rows": 5000,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": null,
+    "threshold": 0.6
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T16:05:49.538094",
+    "rows": 200,
+    "labels_1": 17,
+    "labels_0": 183,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.43243243243243235,
+    "threshold": 0.5
+  },
+  {
+    "type": "train",
+    "timestamp": "2026-01-02T16:06:06.979698",
+    "rows": 200,
+    "labels_1": 20,
+    "labels_0": 180,
+    "rf_params": {
+      "n_estimators": 500,
+      "min_samples_leaf": 5,
+      "class_weight": "balanced",
+      "max_depth": 12,
+      "max_features": "sqrt",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "auc": 0.5833333333333334,
+    "threshold": 0.5
   }
 ]

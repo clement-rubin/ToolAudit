@@ -2,14 +2,82 @@ import pandas as pd
 
 REQUIRED = ["NumRF", "Montant", "MontantRF", "DateDon", "AdressePays", "NomDonateur"]
 
+# Metadonnees de controle pour la tracabilite
+CONTROL_RULES = [
+    {
+        "id": "Ctrl_DoublonRF",
+        "label": "Doublons sur NumRF",
+        "criterion": "NumRF apparait plus d une fois dans le fichier.",
+        "depends_on": ["NumRF"],
+    },
+    {
+        "id": "Ctrl_RuptureSeq",
+        "label": "Rupture de sequence",
+        "criterion": "Ecart de sequence (>1) detecte en triant NumRF.",
+        "depends_on": ["NumRF"],
+    },
+    {
+        "id": "Ctrl_PaysGAFI",
+        "label": "Pays sensible FATF",
+        "criterion": "AdressePays present dans la liste FATF simplifiee.",
+        "depends_on": ["AdressePays"],
+    },
+    {
+        "id": "Ctrl_MontantNegatif",
+        "label": "Montant negatif",
+        "criterion": "MontantRF strictement negatif.",
+        "depends_on": ["MontantRF"],
+    },
+    {
+        "id": "Ctrl_MontantNul",
+        "label": "Montant nul",
+        "criterion": "Montant indique a 0.",
+        "depends_on": ["Montant"],
+    },
+    {
+        "id": "Ctrl_IdentiteVide",
+        "label": "Identite manquante",
+        "criterion": "NomDonateur vide ou uniquement des espaces.",
+        "depends_on": ["NomDonateur"],
+    },
+    {
+        "id": "Ctrl_Montant500",
+        "label": "Montant eleve",
+        "criterion": "Montant superieur ou egal a 500.",
+        "depends_on": ["Montant"],
+    },
+    {
+        "id": "Ctrl_DateApresNov",
+        "label": "Date apres novembre",
+        "criterion": "DateDon situee apres le mois de novembre (mois >= 11).",
+        "depends_on": ["DateDon"],
+    },
+    {
+        "id": "Ctrl_Etranger",
+        "label": "Adresse etrangere",
+        "criterion": "AdressePays differente de France.",
+        "depends_on": ["AdressePays"],
+    },
+    {
+        "id": "RiskRule",
+        "label": "Heuristique de priorisation",
+        "criterion": "Active si un controle eliminatoire est vrai ou si deux controles cumulatifs sont vrais.",
+        "depends_on": ["NumRF", "Montant", "MontantRF", "AdressePays", "NomDonateur", "DateDon"],
+    },
+]
+
 def validate_columns(df: pd.DataFrame) -> None:
     missing = [c for c in REQUIRED if c not in df.columns]
     if missing:
         raise ValueError(f"Colonnes manquantes: {missing}")
 
-def build_features(df: pd.DataFrame, fatf_countries: set[str]) -> pd.DataFrame:
+def build_features(df: pd.DataFrame, fatf_countries: set[str], allow_missing: bool = True) -> tuple[pd.DataFrame, list[str]]:
     d = df.copy()
-    validate_columns(d)
+    missing = [c for c in REQUIRED if c not in d.columns]
+    if missing and not allow_missing:
+        raise ValueError(f"Colonnes manquantes: {missing}")
+    for c in missing:
+        d[c] = pd.NA
 
     # Types
     d["DateDon"] = pd.to_datetime(d["DateDon"], errors="coerce")
@@ -62,4 +130,4 @@ def build_features(df: pd.DataFrame, fatf_countries: set[str]) -> pd.DataFrame:
     cumul = d["Ctrl_Montant500"] + d["Ctrl_DateApresNov"] + d["Ctrl_Etranger"]
     d["RiskRule"] = ((auto >= 1) | (cumul >= 2)).astype(int)
 
-    return d
+    return d, missing
