@@ -12,6 +12,14 @@ Outil Streamlit d'audit RF 100% local et open source (streamlit, pandas, numpy, 
 - **Scoring** : generation `Prob_Risque` (0-1) et `Classe_ML` ("Haut risque"/"Risque faible") selon seuil reglable. Export `storage/scored.csv` en `;`, directement lisible (Power BI, Excel).
 - **Traçabilite** : chaque train/score ecrit une entree dans `storage/run_log.json` (timestamp, volumes, nb labels, params RF, AUC, seuil).
 
+## Comment fonctionne la Random Forest ici ?
+- **Features alimentees** : seule la colonne `RowID` est ignoree par le modele ; toutes les colonnes derivees par `services/features.py` (flags de controles metier + montants normalises + derivees de date) sont injectees dans l'algorithme.
+- **Hyperparametrage verrouille** : les parametres `RF_PARAMS` sont fixes dans `services/model.py` (profondeur max, nombre d'arbres, min_samples_leaf…) pour eviter le sur-ajustement et garantir la repetabilite avec `random_state=42`.
+- **Equilibre des classes** : l'utilisateur fournit les labels. L'entrainement est bloque s'il y a moins de 10 exemples dans chaque classe afin d'avoir un signal fiable.
+- **Metric suivie** : l'AUC est calculee a l'entrainement et affichee dans l'interface. Un `classification_report` complet est imprime pour auditer precision/rappel par classe.
+- **Seuil de decision explicite** : la foret retourne une probabilite `Prob_Risque`; le seuil choisi dans l'UI pilote la classe finale `Classe_ML` (Haut risque/Risque faible) et apparait dans `run_log.json` pour audit posteriori.
+- **Traçabilite du modele** : le fichier `storage/model.joblib` contient le modele entrainne avec ses hyperparametres ; il peut etre recharge pour reproduire un scoring ou investiguer une decision.
+
 ## Transparence des artefacts
 - `storage/labels.csv` : labels saisis, schema fixe `RowID;Label_Anomalie;Commentaire`.
 - `storage/model.joblib` : RandomForest seriealise, rechargable pour audit posteriori.
