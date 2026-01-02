@@ -10,14 +10,7 @@ from services.model import FEATURES, RF_PARAMS, save_model, score, train
 from services.storage import append_run_log, ensure_storage, load_labels, save_labels
 
 st.set_page_config(page_title="RF Audit Tool", layout="wide")
-st.title("RF Audit Tool - Tableau d'audit")
-st.info(
-    "Bandeau d'explication : cet outil aide a repérer les lignes a verifier en priorite, "
-    "puis a scorer tout le fichier. Les donnees restent locales."
-)
-
-
-
+st.title("RF Audit Tool DEC 2025")
 
 # FATF/GAFI list (simplified placeholder)
 FATF_DEFAULT = {"Iran", "Myanmar", "Coree du Nord", "Syrie", "Yemen", "Afrique du Sud"}
@@ -70,20 +63,7 @@ with st.sidebar.expander("Guide rapide (toujours visible)"):
 uploaded = st.file_uploader("Importer votre Excel (.xlsx)", type=["xlsx"])
 
 if uploaded is None:
-    with st.expander("Comment fonctionne l'outil ? (vue auditeur)"):
-        st.markdown(
-            """
-            - Importez le registre Excel : colonnes minimales `NumRF, Montant, MontantRF, DateDon, AdressePays, NomDonateur`.
-            - L'outil applique des contrôles visibles (doublons, ruptures de séquence, montants négatifs/nuls, pays GAFI simplifié, identités vides, effets fin d'année).
-            - Les lignes sont priorisées via `RiskRule` pour gagner du temps sur le labeling.
-            - La partie Random Forest : l'outil apprend à partir de vos labels (anomalie/OK) sur ces contrôles; il assemble 500 petits arbres de décision et vote pour estimer la probabilité de risque. Les réglages sont fixes pour être reproductibles et la proba sert ensuite à classer en "Haut risque" ou "Risque faible" selon le seuil que vous choisissez.
-            - Résultat lisible : après entraînement, l'écran affiche AUC, rappel/précision sur les anomalies, une mini-confusion (TP/FN/FP/TN) et le top des variables qui pèsent le plus.
-            - Vous saisissez vos décisions (anomalie / OK) + commentaire ; elles sont stockées dans `storage/labels.csv`.
-            - Quand il y a assez de cas (>=10 oui et >=10 non), un modèle est entraîné pour scorer tout le fichier et produire `storage/scored.csv` avec probabilité et classe de risque.
-            - Chaque action est journalisée dans `storage/run_log.json` pour la traçabilité.
-            """
-        )
-    st.info("Importez un fichier Excel pour démarrer le workflow complet.")
+    st.info("Importez un fichier Excel pour demarrer le workflow complet.")
 else:
     df = pd.read_excel(uploaded, engine="openpyxl")
     source_name = getattr(uploaded, "name", "fichier_source")
@@ -96,8 +76,8 @@ else:
     with st.spinner("Génération des contrôles et features..."):
         feat = build_features(df, FATF_DEFAULT)
 
-    st.subheader("Aperçu des features")
-    st.dataframe(feat.head(20), width="stretch")
+    st.subheader("Apercu des features")
+    st.dataframe(feat.head(20), use_container_width=True)
 
     st.subheader("2. Priorisation et labeling")
     labels = load_labels()
@@ -107,6 +87,11 @@ else:
     nb_pos, nb_neg = label_distribution(labels)
     st.caption(f"Labels chargés : {len(labels)} ligne(s)")
     st.caption(f"Distribution labels 1={nb_pos} | 0={nb_neg}")
+
+    col_pos, col_neg, col_total = st.columns(3)
+    col_pos.metric("Labels positifs (1)", nb_pos)
+    col_neg.metric("Labels negatifs (0)", nb_neg)
+    col_total.metric("Total labels", int(len(labels)))
 
     st.subheader("Synthese rapide")
     col_metrics = st.columns(3)
@@ -170,8 +155,8 @@ else:
             f"Labels sauvegardés dans storage/labels.csv (1={nb_pos_save}, 0={nb_neg_save})"
         )
 
-    st.subheader("3. Entrainement du modele")
-    if st.button("🚀 Entraîner le modèle (avec labels sauvegardés)"):
+    st.subheader("Entrainer la Random Forest")
+    if st.button("🚀 Entrainer le modele (avec labels sauvegardes)"):
         labels2 = load_labels()
         if labels2.empty:
             st.error("Aucun label sauvegardé. Ajoutez des labels avant d'entraîner.")
@@ -244,7 +229,7 @@ else:
                         }
                     )
 
-    st.subheader("4. Scoring et rapport")
+    st.subheader("Scorer le fichier complet")
     threshold = st.slider("Seuil haut risque (ML)", 0.1, 0.9, 0.6, 0.05)
 
     if st.button("📊 Générer les scores (probabilité de risque)"):
