@@ -1,7 +1,7 @@
 import joblib
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, roc_auc_score
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 from sklearn.model_selection import train_test_split
 
 FEATURES = [
@@ -27,6 +27,8 @@ RF_PARAMS = {
     "n_estimators": 500,
     "min_samples_leaf": 5,
     "class_weight": "balanced",
+    "max_depth": 12,
+    "max_features": "sqrt",
     "random_state": 42,
     "n_jobs": -1,
 }
@@ -46,9 +48,32 @@ def train(df: pd.DataFrame, label_col: str = "Label_Anomalie"):
     proba = model.predict_proba(X_test)[:, 1]
     auc = roc_auc_score(y_test, proba)
     pred = (proba >= 0.5).astype(int)
-    report = classification_report(y_test, pred)
 
-    return model, auc, report
+    report_dict = classification_report(
+        y_test, pred, output_dict=True, zero_division=0
+    )
+    report_text = classification_report(y_test, pred, zero_division=0)
+
+    cm = confusion_matrix(y_test, pred, labels=[1, 0])
+    tp, fn, fp, tn = int(cm[0, 0]), int(cm[0, 1]), int(cm[1, 0]), int(cm[1, 1])
+
+    feat_importances = (
+        pd.DataFrame(
+            {"feature": X_train.columns, "importance": model.feature_importances_}
+        )
+        .sort_values("importance", ascending=False)
+        .reset_index(drop=True)
+    )
+
+    metrics = {
+        "auc": auc,
+        "threshold_eval": 0.5,
+        "confusion": {"tp": tp, "fn": fn, "fp": fp, "tn": tn},
+        "report_text": report_text,
+        "report_dict": report_dict,
+    }
+
+    return model, metrics, feat_importances
 
 
 def score(model, df: pd.DataFrame):
